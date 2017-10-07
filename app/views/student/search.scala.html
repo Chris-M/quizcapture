@@ -1,0 +1,11 @@
+@(searchForm: Form[forms.SearchForm])
+
+@main("New Student"){
+<h1>Add a new student</h1>
+
+    @helper.form(routes.StudentController.search_post) {
+        @helper.CSRF.formField
+        @helper.inputText(searchForm("name"), '_showConstraints -> false)
+        <button type="submit">Lookup</button>
+    }
+}

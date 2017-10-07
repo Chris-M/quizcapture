@@ -1,0 +1,11 @@
+# This file is used to contain all output messages
+
+validation.required=This is a required field
+
+#Student Form
+validation.name.alreadyExist=A student with that name already exists
+
+#QuizResult Form
+validation.name.notFound=Could not find a student with that name
+validation.notInt=Please make sure to input a valid number
+validation.total.lessThanCorrect=Total cant be more then correct

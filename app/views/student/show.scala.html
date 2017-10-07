@@ -1,0 +1,41 @@
+@(student: Student) @main("Student list"){
+<h1>Student: @student.name</h1>
+<h4>
+    Current Score:
+    @if(student.quizResults.size() > 0) {
+        @student.quizResults.get(student.quizResults.size()-1).correct
+        /
+        @student.quizResults.get(student.quizResults.size()-1).total
+    }else{
+        N/A
+    }
+</h4>
+    <small><a href="@routes.StudentController.delete(student.id)" class="delete_student">Delete current student</a></small>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                Attempt
+            </div>
+            <div class="col-sm-3">
+                Correct
+            </div>
+            <div class="col-sm-3">
+                Total
+            </div>
+        </div>
+    @for(quiz <- student.quizResults){
+        <div class="row">
+            <div class="col-sm-3">
+                @quiz.attempt
+            </div>
+            <div class="col-sm-3">
+                @quiz.correct
+            </div>
+            <div class="col-sm-3">
+                @quiz.total
+            </div>
+        </div>
+    }
+    </div>
+}

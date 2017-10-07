@@ -1,0 +1,22 @@
+@(quizForm: Form[forms.QuizForm])
+
+@main("Add student score"){
+    <h1>Add users score</h1>
+
+    @* Global errors are not tied to any particular form field *@
+    @if(quizForm.hasGlobalErrors) {
+        @quizForm.globalErrors.asScala.map { error: play.data.validation.ValidationError =>
+            <div>
+                @error.key: @error.message
+            </div>
+        }
+    }
+
+    @helper.form(routes.QuizResultController.store) {
+        @helper.CSRF.formField
+        @helper.inputText(quizForm("name"), '_showConstraints -> false)
+        @helper.inputText(quizForm("correct"), '_showConstraints -> false)
+        @helper.inputText(quizForm("total"), '_showConstraints -> false)
+        <button type="submit">Add student</button>
+    }
+}

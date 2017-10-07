@@ -1,0 +1,51 @@
+@(students: List[Student]) @main("Student list"){
+    <hr>
+    <h1>Student list</h1>
+        <a href="#" class="getAvg" data-url="@routes.QuizResultController.average(true)">Get average (only users last attempt)</a> |
+        <a href="#" class="getAvg" data-url="@routes.QuizResultController.average(false)">Get average (with all Attempt)</a>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                Student_id
+            </div>
+            <div class="col-sm-3">
+                Student name
+            </div>
+            <div class="col-sm-3">
+                Latest score
+            </div>
+            <div class="col-sm-2">
+                Remove user?
+            </div>
+        </div>
+        @if(students.size() > 0) {
+            @for(student <- students){
+                <div class="row">
+                    <div class="col-sm-3">
+                        <a href="@routes.StudentController.find(student.id)">@student.id</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="@routes.StudentController.find(student.id)">@student.name</a>
+                    </div>
+                    <div class="col-sm-4">
+                        @if(student.quizResults.size() > 0) {
+                            @student.quizResults.get(student.quizResults.size()-1).correct
+                            /
+                            @student.quizResults.get(student.quizResults.size()-1).total
+                        }else{
+                            N/A
+                        }
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="@routes.StudentController.delete(student.id)" class="delete_student">Remove</a>
+                    </div>
+                </div>
+            }
+        }else{
+            <div class="row">
+                No students found | <a href="@routes.StudentController.create"> Add student</a> ?
+            </div>
+        }
+    </div>
+}

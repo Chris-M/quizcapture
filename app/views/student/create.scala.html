@@ -1,0 +1,11 @@
+@(studentForm: Form[forms.StudentForm])
+
+@main("New Student"){
+    <h1>Add a new student</h1>
+
+    @helper.form(routes.StudentController.store) {
+        @helper.CSRF.formField
+        @helper.inputText(studentForm("name"), '_showConstraints -> false)
+        <button type="submit">Add student</button>
+    }
+}
