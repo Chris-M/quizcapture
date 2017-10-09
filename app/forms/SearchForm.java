@@ -4,10 +4,14 @@ import models.Student;
 import play.data.validation.Constraints;
 import play.data.validation.ValidationError;
 
+import play.data.validation.Constraints.Validate;
+import play.data.validation.Constraints.Validatable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchForm {
+@Validate
+public class SearchForm implements Validatable<List<ValidationError>> {
 
     @Constraints.Required(message="validation.required")
     @Constraints.MaxLength(value=100,message="validation.maxLength")
@@ -17,6 +21,7 @@ public class SearchForm {
      * This method validates a form to register a student
      * @return A list of errors by field
      */
+    @Override
     public List<ValidationError> validate(){
         List<ValidationError> errors = new ArrayList<ValidationError>();
         Student student = Student.find.query().where().eq("name",  name).findUnique();

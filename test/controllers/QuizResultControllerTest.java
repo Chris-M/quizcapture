@@ -107,7 +107,6 @@ public class QuizResultControllerTest {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode actualObj = mapper.readTree(jsonString);
 
-        System.out.println(actualObj);
         assertEquals(0.0,Double.parseDouble(String.valueOf(actualObj.get("average"))),DELTA );
 
         //Extra users for testing avg

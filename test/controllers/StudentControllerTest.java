@@ -21,7 +21,7 @@ public class StudentControllerTest {
 
     @BeforeClass
     public static void startApp() {
-        app = Helpers.fakeApplication(Helpers.inMemoryDatabase());
+        app = Helpers.fakeApplication(Helpers.inMemoryDatabase("default", ImmutableMap.of("MODE", "MySQL")));
         Helpers.start(app);
     }
 
